@@ -68,12 +68,19 @@
       border-radius: var(--radius-lg);
       background:#1e293b;
       border:1px solid var(--border-card);
+      overflow:hidden;
+      flex-shrink:0;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-weight:600;
-      color:var(--text-main);
-      font-size:.8rem;
+    }
+
+    .avatar img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
     }
 
     .me-lines {
@@ -88,9 +95,11 @@
       color:var(--text-main);
       letter-spacing:-.02em;
     }
+
     .me-role {
       font-size:.8rem;
       color:var(--text-dim);
+      line-height:1.3;
     }
 
     .right-head {
@@ -326,25 +335,40 @@
     <header>
       <div class="left-head">
         <div class="avatar">
-          <div class="avatar">
-  <img src="mina.jpeg" alt="Mina Mamdouh" style="width:100%;height:100%;object-fit:cover;object-position:center;">
-</div>
-
+          <img src="mina.jpeg" alt="Mina Mamdouh">
         </div>
         <div class="me-lines">
           <div class="me-name">Mina Mamdouh</div>
-          <div class="me-role lang-en">Automation / Monitoring / Data Ops/ web scrap</div>
-          <div class="me-role lang-ar">Automation / Monitoring / Data Ops/ web scrap</div>
+          <div class="me-role lang-en">Automation / Monitoring / Data Ops / Web Scraping</div>
+          <div class="me-role lang-ar">أوتوميشن / مراقبة / داتا أوبس / Web Scraping</div>
         </div>
       </div>
 
       <div class="right-head">
         <div class="head-cta-row">
-          <a class="btn-wsp lang-en" href="https://wa.me/201276535995" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a class="btn-wsp lang-ar" href="https://wa.me/201276535995" target="_blank" rel="noopener noreferrer">واتساب</a>
+          <a
+            class="btn-wsp lang-en"
+            href="https://wa.me/201276535995"
+            target="_blank"
+            rel="noopener noreferrer"
+          >WhatsApp</a>
 
-          <a class="btn-mail lang-en" href="mailto:gminamamdouh@gmail.com">Email me</a>
-          <a class="btn-mail lang-ar" href="mailto:gminamamdouh@gmail.com">إيميل</a>
+          <a
+            class="btn-wsp lang-ar"
+            href="https://wa.me/201276535995"
+            target="_blank"
+            rel="noopener noreferrer"
+          >واتساب</a>
+
+          <a
+            class="btn-mail lang-en"
+            href="mailto:gminamamdouh@gmail.com"
+          >Email me</a>
+
+          <a
+            class="btn-mail lang-ar"
+            href="mailto:gminamamdouh@gmail.com"
+          >إيميل</a>
         </div>
 
         <button class="lang-toggle-btn" id="langToggle">العربية</button>
@@ -395,7 +419,7 @@
         <!-- Project: account manager sheet -->
         <div class="proj-card">
           <div class="proj-topline">
-            <div class="proj-name lang-en">Automation account manager </div>
+            <div class="proj-name lang-en">Automation account manager</div>
             <div class="proj-name lang-ar">شيت إدارة الحساب أوتوماتيك</div>
             <div class="proj-pill">Reporting</div>
           </div>
@@ -448,7 +472,6 @@
               <li>WhatsApp / Discord webhook</li>
               <li>Scheduled jobs</li>
               <li>N8N Workflows</li>
-
             </ul>
           </div>
         </div>
@@ -480,7 +503,7 @@
           </div>
           <div class="proj-desc lang-ar">
             بيغير باسورد الأدمن بتاع ووردبريس بمواعيد ثابتة،
-            ويبعته للOwner بس. باقي الفريق بياخد لينكات دخول مؤقتة مش الباسورد الأصلي.
+            ويبعته للـ Owner بس. باقي الفريق بياخد لينكات دخول مؤقتة مش الباسورد الأصلي.
           </div>
 
           <div class="proj-meta">
@@ -508,7 +531,7 @@
             Reduces "ex-employee still has access" risk.
           </div>
           <div class="proj-desc lang-ar">
-            نفس الفكرة على لوحات التحكم المبنية بـLaravel.
+            نفس الفكرة على لوحات التحكم المبنية بـ Laravel.
             الهدف: نقلل مخاطرة إن حد قديم لسه معاه أكسس.
           </div>
 
@@ -551,7 +574,7 @@
           </div>
           <div class="proj-desc lang-ar">
             بيولد تقرير جاهز (PDF أو صورة) فيه المبيعات، الصرف على الإعلانات،
-            ROAS، متوسط قيمة الطلب. بيتبعت في مواعيد ثابتة للإدارة.
+            ROAS، ومتوسط قيمة الطلب. بيتبعت في مواعيد ثابتة للإدارة.
           </div>
 
           <div class="proj-meta">
@@ -580,8 +603,8 @@
           </div>
           <div class="proj-desc lang-ar">
             البوت بيعمل أوردر وهمي أوتوماتيك عشان يتأكد إن:
-            الكارت شغال، الدفع شغال، الكونفرميشن شغال.
-            لو في حاجة وقعت → تنبيه.
+            الشيك آوت شغال، الدفع شغال، الكونفرميشن شغال.
+            لو في حاجة وقعت → إنذار.
           </div>
 
           <div class="proj-meta">
@@ -622,8 +645,8 @@
             for a WordPress/WooCommerce store. Designed for owners to keep open all day.
           </div>
           <div class="proj-desc lang-ar">
-            داشبورد داخلية بتعرض المبيعات والمنتجات الأعلى بيع لحظيًا
-            لستور WooCommerce. معمول عشان الأونر يسيبه مفتوح طول اليوم.
+            داشبورد بتعرض مبيعات لحظية ومنتجات الأعلى مبيعًا
+            لستور WooCommerce. معمولة عشان الأونر يسيبها مفتوحة طول اليوم.
           </div>
 
           <div class="proj-meta">
@@ -679,7 +702,8 @@
           </div>
           <div class="proj-desc lang-ar">
             بيراقب كل السيرفرات + Cloudflare rules + الـuptime.
-            يبعت إنذار لو CPU عالي، الشيك آوت بطيء، أو Cloudflare بيخنق عميل حقيقي بالغلط.
+            ويبعت إنذار لو الـCPU عالي، الشيك آوت بطيء،
+            أو Cloudflare بيخنق عميل حقيقي بالغلط.
           </div>
 
           <div class="proj-meta">
@@ -690,7 +714,6 @@
               <li>Server health checks</li>
               <li>Discord / WhatsApp alerts</li>
               <li>Python automations</li>
-
             </ul>
           </div>
         </div>
@@ -721,8 +744,8 @@
             Flags missing images, wrong price formats, broken product pages.
           </div>
           <div class="proj-desc lang-ar">
-            بوت يلف على كل الأقسام والمنتجات والريفيوهات والصور.
-            يعلّم لو في صور ناقصة، سعر بايظ، صفحة منتج مكسورة.
+            بوت يلف على الأقسام والمنتجات والريفيوهات والصور.
+            ويعلم لو في صور ناقصة، سعر غلط، صفحة منتج مكسورة.
           </div>
 
           <div class="proj-meta">
@@ -774,7 +797,6 @@
               <li>Domain registrar API</li>
               <li>Alert to WhatsApp / Discord</li>
               <li>N8N Workflows</li>
-
             </ul>
           </div>
         </div>
@@ -792,8 +814,8 @@
             The idea: you know before the store slows down and costs you sales.
           </div>
           <div class="proj-desc lang-ar">
-            الـCPU مولع؟ الرام بتتهلك؟ الهارد فاضل فيه 2%؟ يجيلك إنذار فورًا.
-            الفكرة: تعرف قبل ما الستور يهبّط ويضيع مبيعات.
+            الـCPU مولع؟ الرام بتتهلك؟ الهارد فاضل فيه 2%؟
+            يجيلك إنذار فورًا. الهدف: تعرف قبل ما الستور يهبّط ويضيع مبيعات.
           </div>
 
           <div class="proj-meta">
@@ -804,7 +826,6 @@
               <li>Custom thresholds per client</li>
               <li>WhatsApp / Discord alert bots</li>
               <li>N8N Workflows</li>
-
             </ul>
           </div>
         </div>
@@ -813,18 +834,18 @@
 
     <!-- FOOTER -->
     <footer>
-      <div class="foot-name">Mina Mamdouh</div>
+      <div class="lang-en">ENG / Mina Mamdouh</div>
+      <div class="lang-ar">م / مينا ممدوح </div>
 
-      <div class="lang-en">I build automations for ecommerce teams.</div>
-      <div class="lang-ar">ببني أوتوميشن لستورات الأونلاين.</div>
-
-      <div style="margin-top:.5rem;">
-        <span class="lang-en">Based in Egypt. Working remote.</span>
-        <span class="lang-ar">في مصر. شغال ريموت.</span>
-      </div>
+      <div class="lang-en">I build automations projects </div>
+      <div class="lang-ar">ببني مشاريع أوتوميشن </div>
 
       <div style="margin-top:.5rem;color:var(--text-dim);">
-        WhatsApp: +20 127 653 5995 · gminamamdouh@gmail.com
+        WhatsApp : +20 127 653 5995
+      </div>
+      <div style="margin-top:.5rem;color:var(--text-dim);">
+        Gmail : gminamamdouh@gmail.com
+
       </div>
     </footer>
 
@@ -848,7 +869,7 @@
     }
   }
 
-  // init English default
+  // init English by default
   setLang("en");
 
   toggleBtn.addEventListener("click", () => {
