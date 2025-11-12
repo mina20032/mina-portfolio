@@ -344,35 +344,27 @@
         </div>
       </div>
 
+
       <div class="right-head">
         <div class="head-cta-row">
-          <a
-            class="btn-wsp lang-en"
-            href="https://wa.me/201276535995"
-            target="_blank"
-            rel="noopener noreferrer"
-          >WhatsApp</a>
+          <a class="btn-wsp lang-en" href="https://wa.me/201276535995" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn-wsp lang-ar" href="https://wa.me/201276535995" target="_blank" rel="noopener noreferrer">واتساب</a>
 
-          <a
-            class="btn-wsp lang-ar"
-            href="https://wa.me/201276535995"
-            target="_blank"
-            rel="noopener noreferrer"
-          >واتساب</a>
+          <!-- ✅ Gmail Compose Links -->
+          <a class="btn-mail lang-en" target="_blank" rel="noopener noreferrer"
+             href="https://mail.google.com/mail/?view=cm&fs=1&to=gminamamdouh@gmail.com&su=Automation%20Project%20Inquiry&body=Hi%20Mina,%20I%20saw%20your%20automation%20projects%20and%20want%20to%20connect.">
+             Email me
+          </a>
 
-          <a
-            class="btn-mail lang-en"
-            href="mailto:gminamamdouh@gmail.com"
-          >Email me</a>
-
-          <a
-            class="btn-mail lang-ar"
-            href="mailto:gminamamdouh@gmail.com"
-          >إيميل</a>
+          <a class="btn-mail lang-ar" target="_blank" rel="noopener noreferrer"
+             href="https://mail.google.com/mail/?view=cm&fs=1&to=gminamamdouh@gmail.com&su=%D8%B3%D8%A4%D8%A7%D9%84%20%D8%AD%D9%88%D9%84%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D8%A3%D9%88%D8%AA%D9%88%D9%85%D9%8A%D8%B4%D9%86&body=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D9%85%D9%8A%D9%86%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D8%AD%D9%88%D9%84%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9%20%D8%A3%D9%88%D8%AA%D9%88%D9%85%D9%8A%D8%B4%D9%86.">
+             إيميل
+          </a>
         </div>
 
         <button class="lang-toggle-btn" id="langToggle">العربية</button>
       </div>
+    </header>
     </header>
 
     <!-- INTRO -->
@@ -1002,6 +994,39 @@
     setLang(current === "en" ? "ar" : "en");
   });
 </script>
+ <!-- 🧠 Visitor Tracking -->
+  <script>
+  (async () => {
+    try {
+      // ✅ Updated deployment
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrOtE19jsePW9uWDCLrNGGsbsL99p4Eb9sF76oSJoYbWl0apXK4DI2HBE4dTn7fYiX/exec";
 
+      const geoResp = await fetch("https://ipapi.co/json/").catch(()=>null);
+      const geo = geoResp ? await geoResp.json().catch(()=>({})) : {};
+
+      const payload = {
+        ip: geo.ip || "",
+        country: geo.country_name || geo.country || "",
+        city: geo.city || "",
+        region: geo.region || "",
+        browser: navigator.userAgent || "",
+        referrer: document.referrer || "Direct",
+        device: /Mobi|Android|iPhone|iPad|Tablet/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
+        page: window.location.pathname || "/",
+        lang: navigator.language || "",
+        ua: navigator.userAgent || ""
+      };
+
+      const qs = new URLSearchParams(payload).toString();
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(SCRIPT_URL + "?" + qs);
+      } else {
+        fetch(SCRIPT_URL + "?" + qs, { method: "GET", keepalive: true });
+      }
+    } catch (err) {
+      console.warn("Tracking error:", err);
+    }
+  })();
+  </script>
 </body>
 </html>
