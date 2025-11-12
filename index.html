@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Mina Mamdouh – Automation Projects</title>
+
+  <!-- Animation Library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+
   <style>
     :root {
       --bg-dark: #0f1a2e;
@@ -20,6 +25,15 @@
       --whatsapp-green: #25D366;
     }
 
+    body.light {
+      --bg-dark: #f7fafc;
+      --card-dark: #ffffff;
+      --panel-dark: #f1f5f9;
+      --text-main: #1e293b;
+      --text-dim: #64748b;
+      --border-card: rgba(0,0,0,.07);
+    }
+
     * {
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
@@ -32,7 +46,10 @@
       background-color: var(--bg-dark);
       color: var(--text-main);
       line-height: 1.5;
+      transition: background 0.4s, color 0.4s;
     }
+
+    html { scroll-behavior: smooth; }
 
     img {
       max-width: 100%;
@@ -128,7 +145,10 @@
       line-height:1.2;
       box-shadow:0 10px 30px rgba(37,211,102,.35);
       white-space:nowrap;
+      transition:transform 0.3s;
     }
+
+    .btn-wsp:hover { transform:scale(1.05); }
 
     .btn-mail {
       background:transparent;
@@ -141,7 +161,10 @@
       line-height:1.2;
       text-decoration:none;
       white-space:nowrap;
+      transition:0.3s;
     }
+
+    .btn-mail:hover { background:rgba(255,255,255,0.05); }
 
     .lang-toggle-btn {
       background: transparent;
@@ -171,9 +194,7 @@
       letter-spacing:-.03em;
       margin-bottom:1rem;
     }
-    .intro h1 span {
-      color:var(--accent);
-    }
+    .intro h1 span { color:var(--accent); }
 
     .lead {
       color:var(--text-dim);
@@ -182,14 +203,10 @@
       margin-bottom:1.5rem;
     }
 
-    .lead + .lead {
-      margin-top:-.75rem;
-    }
+    .lead + .lead { margin-top:-.75rem; }
 
     /******** CATEGORY SECTIONS *********/
-    .category-block {
-      margin-bottom:3rem;
-    }
+    .category-block { margin-bottom:3rem; }
 
     .cat-head {
       font-size: .9rem;
@@ -217,9 +234,7 @@
     }
 
     @media(min-width:768px){
-      .projects-grid {
-        grid-template-columns:repeat(2,1fr);
-      }
+      .projects-grid { grid-template-columns:repeat(2,1fr); }
     }
 
     .proj-card {
@@ -230,7 +245,9 @@
       padding:1rem 1rem 1.25rem;
       display:grid;
       gap:.6rem;
+      transition:transform 0.3s;
     }
+    .proj-card:hover { transform:translateY(-3px); }
 
     .proj-topline {
       display:flex;
@@ -271,6 +288,7 @@
       color:var(--text-main);
       line-height:1.4;
     }
+
     .proj-meta-title {
       font-weight:600;
       color:var(--text-main);
@@ -284,10 +302,7 @@
       margin-top:.4rem;
     }
 
-    ul.meta-list li::before {
-      content:"• ";
-      color:var(--accent);
-    }
+    ul.meta-list li::before { content:"• "; color:var(--accent); }
 
     /******** FOOTER *********/
     footer {
@@ -314,7 +329,6 @@
     body[dir="rtl"] .lang-en { display:none; }
     body[dir="rtl"] .lang-ar { display:block; }
 
-    /* rtl tweaks */
     body[dir="rtl"] header,
     body[dir="rtl"] .intro,
     body[dir="rtl"] .category-block,
@@ -335,7 +349,7 @@
     <header>
       <div class="left-head">
         <div class="avatar">
-          <img src="Mina.png" alt="Mina Mamdouh">
+          <img src="Mina.jpeg" alt="Mina Mamdouh">
         </div>
         <div class="me-lines">
           <div class="me-name">Mina Mamdouh</div>
@@ -362,9 +376,9 @@
           </a>
         </div>
 
+        <button class="lang-toggle-btn" id="themeToggle" aria-label="Toggle theme">☀️</button>
         <button class="lang-toggle-btn" id="langToggle">العربية</button>
       </div>
-    </header>
     </header>
 
     <!-- INTRO -->
@@ -395,10 +409,15 @@
       <p class="lead lang-ar">
         بشتغل مباشرة مع صاحب البزنس أو الهيد بتاع الماركتينج
       </p>
+
+      <div class="head-cta-row" style="margin-top:.5rem;">
+        <a class="btn-mail lang-en" href="#projectsTop">View projects ↓</a>
+        <a class="btn-mail lang-ar" href="#projectsTop">شوف المشاريع ↓</a>
+      </div>
     </section>
 
     <!-- CATEGORY 1: Account & Balance -->
-    <section class="category-block">
+    <section class="category-block" id="projectsTop">
       <div class="cat-head">
         <div class="lang-en">Account & Balance</div>
         <div class="lang-ar">الحسابات والرصيد</div>
@@ -994,19 +1013,45 @@
     setLang(current === "en" ? "ar" : "en");
   });
 </script>
- <!-- 🧠 Visitor Tracking -->
+  <script>
+    const themeBtn=document.getElementById('themeToggle');
+    themeBtn.addEventListener('click',()=>{
+      document.body.classList.toggle('light');
+      themeBtn.textContent=document.body.classList.contains('light')?'🌙':'☀️';
+    });
+  </script>
+
+  <!-- Animation init -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>AOS.init({duration:700,once:true});</script>
+  <script>
+    // Ensure AOS has targets without modifying many nodes manually
+    document.querySelectorAll('.proj-card').forEach((el, i) => {
+      el.setAttribute('data-aos','fade-up');
+      el.setAttribute('data-aos-delay', String((i % 6) * 50));
+    });
+    document.querySelectorAll('.cat-head').forEach(el => el.setAttribute('data-aos','fade-up'));
+    const intro = document.querySelector('.intro');
+    if (intro) intro.setAttribute('data-aos','fade-in');
+  </script>
+        <!-- Visitor Tracking (safe version) -->
   <script>
   (async () => {
     try {
-      // ✅ Updated deployment
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrOtE19jsePW9uWDCLrNGGsbsL99p4Eb9sF76oSJoYbWl0apXK4DI2HBE4dTn7fYiX/exec";
 
-      const geoResp = await fetch("https://ipapi.co/json/").catch(()=>null);
-      const geo = geoResp ? await geoResp.json().catch(()=>({})) : {};
+      let geo = {};
+      try {
+        const geoResp = await fetch("https://ipapi.co/json/");
+        if (geoResp.ok) geo = await geoResp.json();
+      } catch(e) {
+        geo = {}; // لو فشل الاتصال
+      }
 
       const payload = {
         ip: geo.ip || "",
-        country: geo.country_name || geo.country || "",
+        country: geo.country_name || "",
         city: geo.city || "",
         region: geo.region || "",
         browser: navigator.userAgent || "",
@@ -1018,13 +1063,10 @@
       };
 
       const qs = new URLSearchParams(payload).toString();
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(SCRIPT_URL + "?" + qs);
-      } else {
-        fetch(SCRIPT_URL + "?" + qs, { method: "GET", keepalive: true });
-      }
+      if (navigator.sendBeacon) navigator.sendBeacon(SCRIPT_URL + "?" + qs);
+      else fetch(SCRIPT_URL + "?" + qs, { method: "GET", keepalive: true });
     } catch (err) {
-      console.warn("Tracking error:", err);
+      console.warn("Tracking disabled locally");
     }
   })();
   </script>
